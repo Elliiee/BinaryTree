@@ -8,7 +8,7 @@ public class ConstructBTreeInorderPostorder {
     HashMap<Integer, Integer> idx_map = new HashMap<>();
 
     public TreeNode helper(int in_left, int in_right){
-        if (in_left > in_right);
+        if (in_left > in_right) return null;
 
         int root_val = postorder[post_idx];
         TreeNode root = new TreeNode(root_val);
@@ -16,7 +16,7 @@ public class ConstructBTreeInorderPostorder {
         int index = idx_map.get(root_val);
 
         post_idx--;
-        root.right = helper(index + 1, in_right);
+        root.right = helper(index + 1, in_right); // can't change the sequence, have to get right first
         root.left = helper(in_left, index - 1);
 
         return root;
